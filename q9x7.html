@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Such a Ho</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=Nunito:wght@700;900&display=swap">
+<style>
+/* Layout: one full-screen party stage. Confetti canvas + emoji rain behind, headline stack centered, one tap target everywhere. Single committed look: neon on deep plum. */
+:root{
+  --bg:#1b0a2f;
+  --bg-glow:#5a0f7a;
+  --hot:#ff2d95;
+  --gold:#ffd23f;
+  --mint:#3dffb4;
+  --fg:#fff6fb;
+  --display:'Bungee','Arial Black',Impact,sans-serif;
+  --body:'Nunito',system-ui,-apple-system,sans-serif;
+  color-scheme:dark;
+}
+html,body{height:100%;margin:0}
+body{
+  background:var(--bg);color:var(--fg);font-family:var(--body);
+  overflow:hidden;box-sizing:border-box;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:0;
+  -webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;
+}
+.wash{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 110%, var(--bg-glow) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 15% -10%, #a0137a 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 90% 10%, #0f3f7a 0%, transparent 70%),
+    var(--bg);
+  animation:breathe 4s ease-in-out infinite alternate;
+}
+@keyframes breathe{from{filter:hue-rotate(0deg) saturate(1)}to{filter:hue-rotate(40deg) saturate(1.3)}}
+.flash{position:fixed;inset:0;z-index:5;background:#fff;pointer-events:none;animation:flash .9s ease-out forwards}
+@keyframes flash{0%{opacity:1}100%{opacity:0}}
+.rain{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.rain span{
+  position:absolute;top:-12vh;font-size:var(--s,2rem);
+  animation:fall var(--d,6s) linear var(--delay,0s) infinite;
+  will-change:transform;
+}
+@keyframes fall{
+  0%{transform:translateY(0) rotate(0deg)}
+  100%{transform:translateY(125vh) rotate(var(--spin,360deg))}
+}
+.stage{
+  position:relative;z-index:2;height:100%;padding-block:max(10px,2vh);box-sizing:border-box;
+  display:grid;place-items:center;text-align:center;
+}
+.stack{display:grid;gap:clamp(6px,1.8vh,20px);justify-items:center;max-width:100%}
+.eyebrow{
+  font-weight:900;letter-spacing:.14em;text-transform:uppercase;
+  font-size:clamp(.7rem,min(3.4vw,2vh),1.1rem);color:var(--mint);
+  animation:blink 1s steps(2) infinite;
+}
+@keyframes blink{50%{opacity:.35}}
+.crown{font-size:clamp(2.2rem,min(16vw,8.5vh),6.5rem);line-height:1;animation:bob 1.6s ease-in-out infinite;filter:drop-shadow(0 8px 20px rgba(255,210,63,.45))}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-14px) rotate(6deg)}}
+h1{
+  margin:0;font-family:var(--display);font-weight:400;
+  font-size:clamp(2.6rem,min(19vw,10.5vh),10rem);line-height:.92;
+  text-wrap:balance;color:var(--gold);
+  text-shadow:
+    0 2px 0 #d9a51c, 0 4px 0 #b3861a, 0 6px 0 #8c6712,
+    0 10px 0 var(--hot), 0 14px 0 #b8126a,
+    0 22px 40px rgba(255,45,149,.55);
+  animation:pop .7s cubic-bezier(.2,1.6,.4,1) both, wobble 2.4s ease-in-out .7s infinite;
+  transform-origin:50% 60%;
+}
+h1 .line{display:block}
+@keyframes pop{0%{transform:scale(.2) rotate(-18deg);opacity:0}60%{opacity:1}100%{transform:scale(1) rotate(0)}}
+@keyframes wobble{0%,100%{transform:rotate(-2.5deg) scale(1)}50%{transform:rotate(2.5deg) scale(1.04)}}
+.sub{
+  font-size:clamp(.95rem,min(4.6vw,2.5vh),1.7rem);font-weight:900;max-width:24ch;line-height:1.35;text-wrap:balance;
+  color:var(--fg);text-shadow:0 2px 12px rgba(0,0,0,.5);
+}
+.sub b{color:var(--hot);-webkit-text-stroke:.5px var(--fg)}
+button.fanfare{
+  margin-top:clamp(4px,1.5vh,16px);
+  font:900 clamp(.9rem,min(4.2vw,2.2vh),1.25rem) var(--body);letter-spacing:.04em;text-transform:uppercase;
+  color:#1b0a2f;background:var(--gold);border:0;border-radius:999px;
+  padding:.85em 1.5em;cursor:pointer;
+  box-shadow:0 6px 0 #b3861a,0 14px 30px rgba(255,210,63,.4);
+  animation:pulse 1.2s ease-in-out infinite;
+}
+button.fanfare:active{transform:translateY(4px);box-shadow:0 2px 0 #b3861a}
+button.fanfare:focus-visible{outline:3px solid var(--mint);outline-offset:4px}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+.hint{font-size:clamp(.65rem,1.7vh,.85rem);font-weight:700;opacity:.75;letter-spacing:.06em;text-transform:uppercase}
+.shake{animation:shake .5s ease-in-out}
+@keyframes shake{0%,100%{transform:translate(0)}20%{transform:translate(-10px,6px)}40%{transform:translate(10px,-6px)}60%{transform:translate(-8px,-4px)}80%{transform:translate(8px,4px)}}
+@media (prefers-reduced-motion:reduce){
+  .wash,.rain span,.eyebrow,.crown,button.fanfare{animation:none}
+  h1{animation:pop .4s ease-out both}
+  .flash{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="wash"></div>
+<div class="flash"></div>
+<div class="rain" id="rain" aria-hidden="true"></div>
+
+<main class="stage" id="stage">
+  <div class="stack">
+    <div class="eyebrow">🚨 We have a winner 🚨</div>
+    <div class="crown" aria-hidden="true">👑</div>
+    <h1><span class="line">Such</span><span class="line">a Ho</span></h1>
+    <p class="sub">Congratulations. <b>It's you.</b> Everyone else is safe tonight.</p>
+    <button class="fanfare" id="fanfare" type="button">🔊 Tap for fanfare</button>
+    <div class="hint">Tap anywhere for more confetti</div>
+  </div>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.9.3/confetti.browser.min.js"></script>
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Emoji rain
+  var rain = document.getElementById('rain');
+  var emojis = ['🍑','💋','🔥','👑','💅','🎉','✨','🍾','💃','🪩','🥂','💖'];
+  if (!reduce) {
+    for (var i = 0; i < 28; i++) {
+      var s = document.createElement('span');
+      s.textContent = emojis[i % emojis.length];
+      s.style.left = (Math.random() * 100) + 'vw';
+      s.style.setProperty('--s', (1.4 + Math.random() * 2.2) + 'rem');
+      s.style.setProperty('--d', (4 + Math.random() * 5) + 's');
+      s.style.setProperty('--delay', (-Math.random() * 9) + 's');
+      s.style.setProperty('--spin', (Math.random() > .5 ? 1 : -1) * (180 + Math.random() * 540) + 'deg');
+      rain.appendChild(s);
+    }
+  }
+
+  // Confetti (library from CDN; page still works if it fails to load)
+  var colors = ['#ff2d95','#ffd23f','#3dffb4','#ffffff','#7a3cff'];
+  function burst(x, y) {
+    if (typeof confetti !== 'function') return;
+    confetti({ particleCount: 140, spread: 90, startVelocity: 55, origin: { x: x, y: y }, colors: colors, scalar: 1.1 });
+    confetti({ particleCount: 60, spread: 140, startVelocity: 35, origin: { x: x, y: y }, colors: colors, shapes: ['star'], scalar: 1.6 });
+  }
+  function cannons() {
+    if (typeof confetti !== 'function') return;
+    var end = Date.now() + 2500;
+    (function frame(){
+      confetti({ particleCount: 6, angle: 60, spread: 60, origin: { x: 0, y: .8 }, colors: colors });
+      confetti({ particleCount: 6, angle: 120, spread: 60, origin: { x: 1, y: .8 }, colors: colors });
+      if (Date.now() < end) requestAnimationFrame(frame);
+    })();
+  }
+  function opening() {
+    burst(.5, .45);
+    setTimeout(function(){ burst(.2, .3); }, 250);
+    setTimeout(function(){ burst(.8, .3); }, 500);
+    if (!reduce) setTimeout(cannons, 700);
+  }
+  if (document.readyState === 'complete') opening(); else window.addEventListener('load', opening);
+
+  // Fanfare: synthesized with Web Audio (iPhone only allows sound after a tap)
+  var ctx = null;
+  function note(freq, t, dur, type, gain) {
+    var o = ctx.createOscillator(), g = ctx.createGain();
+    o.type = type; o.frequency.value = freq;
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(gain, t + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g).connect(ctx.destination);
+    o.start(t); o.stop(t + dur + 0.05);
+  }
+  function fanfare() {
+    try {
+      if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
+      if (ctx.state === 'suspended') ctx.resume();
+      var t = ctx.currentTime + 0.03;
+      var seq = [[523.25,0,.18],[523.25,.2,.18],[523.25,.4,.18],[659.25,.6,.5],[587.33,1.05,.18],[659.25,1.25,.18],[783.99,1.45,.9],[1046.5,1.5,1.2]];
+      seq.forEach(function(n){
+        note(n[0], t + n[1], n[2], 'square', 0.12);
+        note(n[0] / 2, t + n[1], n[2], 'sawtooth', 0.08);
+        note(n[0] * 1.005, t + n[1], n[2], 'triangle', 0.1);
+      });
+      // Cymbal-ish noise hit on the last chord
+      var len = ctx.sampleRate * 1.2, buf = ctx.createBuffer(1, len, ctx.sampleRate), d = buf.getChannelData(0);
+      for (var i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 3);
+      var src = ctx.createBufferSource(), ng = ctx.createGain(), hp = ctx.createBiquadFilter();
+      hp.type = 'highpass'; hp.frequency.value = 5000;
+      src.buffer = buf; ng.gain.value = 0.25;
+      src.connect(hp).connect(ng).connect(ctx.destination); src.start(t + 1.45);
+    } catch (e) {}
+  }
+
+  var btn = document.getElementById('fanfare');
+  var stage = document.getElementById('stage');
+  btn.addEventListener('click', function(e){
+    e.stopPropagation();
+    fanfare(); opening();
+    if (!reduce) { stage.classList.remove('shake'); void stage.offsetWidth; stage.classList.add('shake'); }
+    btn.textContent = '🔊 Again!';
+  });
+  stage.addEventListener('pointerdown', function(e){
+    if (e.target === btn) return;
+    burst(e.clientX / innerWidth, e.clientY / innerHeight);
+  });
+})();
+</script>
+</body>
+</html>

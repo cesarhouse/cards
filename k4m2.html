@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Not a Ho</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:wght@400;700&display=swap">
+<style>
+/* Layout: one deadpan inspection slip, centered. A rubber stamp slams onto cool grey paper. Single committed look. */
+:root{
+  --paper:#dde2ea;
+  --paper-edge:#c3cad6;
+  --ink:#1f2a3a;
+  --ink-soft:#56657a;
+  --stamp:#b3122e;
+  --display:'Special Elite','Courier New',monospace;
+  --body:'Courier Prime','Courier New',monospace;
+  color-scheme:light;
+}
+html,body{height:100%;margin:0}
+body{
+  background:var(--paper);color:var(--ink);font-family:var(--body);
+  box-sizing:border-box;overflow:hidden;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0 31px, rgba(31,42,58,.07) 31px 32px);
+}
+.stage{height:100%;padding-block:max(10px,2vh);box-sizing:border-box;display:grid;place-items:center;text-align:center}
+.slip{display:grid;gap:clamp(10px,2.6vh,28px);justify-items:center;max-width:100%}
+.eyebrow{
+  font-size:clamp(.65rem,min(3vw,1.8vh),.85rem);letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);
+}
+.stampwrap{position:relative;display:grid;place-items:center;padding:1rem 0}
+h1{
+  margin:0;font-family:var(--display);font-weight:400;
+  font-size:clamp(2.2rem,min(14vw,8vh),7rem);line-height:1;text-transform:uppercase;
+  color:var(--stamp);
+  border:.14em double var(--stamp);border-radius:.12em;
+  padding:.18em .35em .12em;
+  transform:rotate(-7deg);
+  -webkit-mask-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.4 1.9'/></filter><rect width='200' height='200' filter='url(%23n)' fill='white'/></svg>");
+  mask-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.4 1.9'/></filter><rect width='200' height='200' filter='url(%23n)' fill='white'/></svg>");
+  -webkit-mask-size:200px 200px;mask-size:200px 200px;
+  animation:slam .5s cubic-bezier(.3,1.5,.5,1) both;
+  text-wrap:balance;
+}
+@keyframes slam{0%{transform:rotate(-20deg) scale(2.4);opacity:0}70%{opacity:.98}100%{transform:rotate(-7deg) scale(1);opacity:.96}}
+.verdict{
+  font-size:clamp(.9rem,min(4.2vw,2.3vh),1.25rem);line-height:1.5;max-width:28ch;text-wrap:balance;
+}
+.verdict b{font-weight:700}
+.meta{
+  display:grid;grid-template-columns:auto auto;gap:.3em 1.2em;
+  font-size:clamp(.7rem,min(3vw,1.8vh),.85rem);color:var(--ink-soft);letter-spacing:.06em;
+  text-align:left;font-variant-numeric:tabular-nums;
+  border-top:1px dashed var(--paper-edge);padding-top:1em;margin-top:.5em;
+}
+.meta dt{text-transform:uppercase}
+.meta dd{margin:0;color:var(--ink)}
+@media (prefers-reduced-motion:reduce){h1{animation:none;opacity:.96}}
+</style>
+</head>
+<body>
+
+<main class="stage">
+  <div class="slip">
+    <div class="eyebrow">Official inspection result</div>
+    <div class="stampwrap"><h1>Not a Ho</h1></div>
+    <p class="verdict">Inspected and cleared. <b>Nothing to see here.</b> Carry on with your evening.</p>
+    <dl class="meta">
+      <dt>Status</dt><dd>Cleared</dd>
+      <dt>Suspicion</dt><dd>0 %</dd>
+      <dt>Inspector</dt><dd>No. 7</dd>
+    </dl>
+  </div>
+</main>
+</body>
+</html>
